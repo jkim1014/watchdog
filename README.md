@@ -1,2 +1,1 @@
-# watchdog
-Capital One SES Hackathon
+# waygo
