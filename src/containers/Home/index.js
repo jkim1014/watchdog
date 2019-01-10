@@ -3,7 +3,9 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from 'react-places-autocomplete'
+import { withRouter } from 'react-router-dom'
 import { Wrapper } from './styles'
+import Button from '@material-ui/core/Button'
 
 class Home extends Component {
   constructor(props) {
@@ -28,7 +30,6 @@ class Home extends Component {
       .catch(error => console.error('Error', error))
   }
   render() {
-    console.log(this.state)
     return (
       <Wrapper>
         <PlacesAutocomplete
@@ -74,9 +75,10 @@ class Home extends Component {
             </div>
           )}
         </PlacesAutocomplete>
+        <Button onClick={() => this.props.history.push({pathname: '/budget', state: this.state})}>Explore!</Button>
       </Wrapper>
     )
   }
 }
 
-export default Home
+export default withRouter(Home)
