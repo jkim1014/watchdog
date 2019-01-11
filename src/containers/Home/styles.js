@@ -14,5 +14,11 @@ export const Wrapper2 = styled(Flex)`
 
 export const Wrapper3 = styled(Flex)`
   justify-content: center;
-  margin-top: 30%;
+  margin-top: 12%;
+`
+
+export const Logo = styled.img`
+  height: 100%;
+  width: 100%;
+  margin-top: 10%;
 `
