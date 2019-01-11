@@ -140,7 +140,7 @@ class Home extends Component {
                         <TableCell component="th" scope="row">
                           {i.name}
                         </TableCell>
-                        <TableCell>{i.date}</TableCell>
+                        <TableCell>{new Date(i.date).toDateString()}</TableCell>
                         <TableCell>{i.merchants.length}</TableCell>
                         <TableCell>{i.budget}</TableCell>
                       </TableRow>
