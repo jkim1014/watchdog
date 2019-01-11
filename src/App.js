@@ -30,7 +30,6 @@ class App extends Component {
               <Route path="/categories/misc" component={Misc} />
               <Route path="/categories/attraction" component={Attraction} />
               <Route path="/categories" component={Categories} />
-              <Route path="/result" component={Final} />
               <Route path="/itinerary" component={Itinerary} />
               <Route path="/" component={Home} />
             </Switch>
