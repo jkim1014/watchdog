@@ -11,6 +11,7 @@ import Food from './containers/Categories/Food'
 import Shopping from './containers/Categories/Shopping'
 import Misc from './containers/Categories/Misc'
 import Attraction from './containers/Categories/Attractions'
+import Itinerary from './containers/Itinerary'
 
 // creates new client
 const client = new ApolloClient({
@@ -31,6 +32,7 @@ class App extends Component {
               <Route path="/categories/attraction" component={Attraction} />
               <Route path="/categories" component={Categories} />
               <Route path="/result" component={Final} />
+              <Route path="/itinerary" component={Itinerary} />
               <Route path="/" component={Home} />
             </Switch>
           </div>
