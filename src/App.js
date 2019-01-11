@@ -4,7 +4,6 @@ import { ApolloProvider } from 'react-apollo'
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import config from './config'
 import Home from './containers/Home'
-import Final from './containers/Final'
 import BA from './containers/BudgetActivities'
 import Categories from './containers/Categories'
 import Food from './containers/Categories/Food'
@@ -30,7 +29,6 @@ class App extends Component {
               <Route path="/categories/misc" component={Misc} />
               <Route path="/categories/attraction" component={Attraction} />
               <Route path="/categories" component={Categories} />
-              <Route path="/result" component={Final} />
               <Route path="/" component={Home} />
             </Switch>
           </div>

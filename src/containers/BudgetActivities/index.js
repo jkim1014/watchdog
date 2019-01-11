@@ -10,7 +10,8 @@ class BudgetActivities extends Component {
     super(props)
     this.state = {
       amount: 0,
-      walking: false
+      walking: false,
+      weight: ''
     }
   }
   handleChange = name => event => {
@@ -40,13 +41,27 @@ class BudgetActivities extends Component {
             startAdornment: <InputAdornment position="start">$</InputAdornment>
           }}
         />
+        <div>Name of Itinerary</div>
+        <TextField
+          id="outlined-adornment-weight"
+          variant="outlined"
+          label="Itinerary"
+          value={this.state.weight}
+          onChange={this.handleChange('weight')}
+        />
         <div>Will you walk through the entire day?</div>
-        <Button onClick={() => this.setState({ walking: true})}>Walking</Button>
-        <Button onClick={() => this.setState({ walking: false })}>Driving</Button>
+        <Button onClick={() => this.setState({ walking: true })}>
+          Walking
+        </Button>
+        <Button onClick={() => this.setState({ walking: false })}>
+          Driving
+        </Button>
         <Button
           onClick={() => {
             store.set('amount', { amount: this.state.amount })
+            store.set('title', { title: this.state.weight })
             store.set('walking', { walking: this.state.walking })
+            store.set('merchants', { merchants: [] })
             this.props.history.push('/categories')
           }}
         >
