@@ -6,6 +6,7 @@ import PlacesAutocomplete, {
 import { withRouter } from 'react-router-dom'
 import { Wrapper } from './styles'
 import Button from '@material-ui/core/Button'
+import store from 'store'
 
 class Home extends Component {
   constructor(props) {
@@ -75,7 +76,9 @@ class Home extends Component {
             </div>
           )}
         </PlacesAutocomplete>
-        <Button onClick={() => this.props.history.push({pathname: '/budget', state: this.state})}>Explore!</Button>
+        <Button onClick={() => {
+          store.set('geo', {longitude: this.state.longitude, latitude: this.state.latitude})
+          this.props.history.push('/budget')}}>Explore!</Button>
       </Wrapper>
     )
   }

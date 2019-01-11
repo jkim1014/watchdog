@@ -22,6 +22,7 @@
     "react-scripts": "1.1.4",
     "react-vis": "^1.11.4",
     "reactstrap": "^6.5.0",
+    "store": "^2.0.12",
     "styled-components": "^4.0.3"
   },
   "devDependencies": {
