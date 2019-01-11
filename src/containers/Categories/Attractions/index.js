@@ -4,35 +4,49 @@ import { Query } from 'react-apollo'
 import { GET_ATTRACTION } from './graphql'
 import Button from '@material-ui/core/Button'
 import store from 'store'
+import Merchant from '../../../components/Merchant'
 
 class Attractions extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      amount: 0
+      amount: 0,
+      cart: []
     }
   }
   handleComplete = () => {
     const currentAmt = store.get('amount').amount
+    const currentMerchants = store.get('merchants').merchants
+    const updatedMerchants = currentMerchants.concat(this.state.cart)
     store.set('amount', {amount: currentAmt - this.state.amount})
+    store.set('merchants', {merchants: updatedMerchants})
     this.props.history.push('/categories')
   }
 
+  update = input => {
+    this.setState(input)
+  }
+
   render() {
+    const compare = (a,b) => {
+      if (a.numTransactions > b.numTransactions)
+        return -1;
+      if (a.numTransactions < b.numTransactions)
+        return 1;
+      return 0;
+    }
     return (
       <div>
-        <div>Your budget: {store.get('amount').amount}</div>
-        <div>Current options: {this.state.amount}</div>
+        <div>Your budget: ${store.get('amount').amount.toFixed(2)}</div>
+        <div>Current options: ${this.state.amount.toFixed(2)}</div>
         <Query query={GET_ATTRACTION} variables={{ category: 'a', lon: store.get('geo').longitude.toString(), lat: store.get('geo').latitude.toString(), walking: store.get('walking').walking}}>
           {({ loading, error, data }) => {
             if (loading) return 'loading'
             if (error) return 'error'
-            console.log(store.get('geo'))
-            console.log(store.get('walking').walking)
-            console.log({longitude: '71'})
-            console.log(data)
-            return (data.merchants.map(merchant => {
-              return <div>{merchant.name}</div>
+            data.merchants.sort(compare)
+            const reduced = data.merchants.slice(0, 20)
+            return (reduced.map(merchant => {
+              return <Merchant merchant={merchant} update={this.update} amount={this.state.amount} cart={this.state.cart} />
             }))
           }}
         </Query>
