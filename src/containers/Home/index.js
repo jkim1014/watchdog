@@ -144,7 +144,7 @@ class Home extends Component {
                         </TableCell>
                         <TableCell>{new Date(i.date).toDateString()}</TableCell>
                         <TableCell>{i.merchants.length}</TableCell>
-                        <TableCell>{i.budget}</TableCell>
+                        <TableCell>{'$' + i.budget}</TableCell>
                       </TableRow>
                     )
                   })}
