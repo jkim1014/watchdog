@@ -6,13 +6,13 @@ import PlacesAutocomplete, {
 import { withRouter } from 'react-router-dom'
 import { Wrapper } from './styles'
 import Button from '@material-ui/core/Button'
-import { GET_ITINERARIES } from '../Itinerary/graphql';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import { Query } from 'react-apollo';
+import { GET_ITINERARIES } from '../Itinerary/graphql'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import { Query } from 'react-apollo'
 import store from 'store'
 
 class Home extends Component {
@@ -85,15 +85,26 @@ class Home extends Component {
               </div>
             )}
           </PlacesAutocomplete>
-          <Button onClick={() => this.props.history.push({pathname: '/budget', state: this.state})}>Explore!</Button>
+          <Button
+            onClick={() => {
+              store.set('geo', {
+                longitude: this.state.longitude,
+                latitude: this.state.latitude
+              })
+              this.props.history.push('/budget')
+            }}
+          >
+            Explore!
+          </Button>
         </Wrapper>
+
         <Query query={GET_ITINERARIES}>
           {({ loading, error, data }) => {
-            if (loading) return 'Loading';
-            if (error) return 'Error!';
-            console.log(data);
+            if (loading) return 'Loading'
+            if (error) return 'Error!'
+            console.log(data)
             const itineraries = data.itinerary.sort((a, b) => {
-              return new Date(b.date) - new Date(a.date);
+              return new Date(b.date) - new Date(a.date)
             })
 
             return (
@@ -108,7 +119,7 @@ class Home extends Component {
                 </TableHead>
                 <TableBody>
                   {itineraries.map(i => {
-                    return(
+                    return (
                       <TableRow>
                         <TableCell component="th" scope="row">
                           {i.name}
@@ -117,7 +128,7 @@ class Home extends Component {
                         <TableCell>{i.merchants.length}</TableCell>
                         <TableCell>{i.budget}</TableCell>
                       </TableRow>
-                    );
+                    )
                   })}
                 </TableBody>
               </Table>
