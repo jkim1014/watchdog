@@ -13,6 +13,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import { Query } from 'react-apollo';
+import store from 'store'
 
 class Home extends Component {
   constructor(props) {
