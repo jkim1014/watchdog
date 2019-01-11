@@ -4,7 +4,7 @@ import PlacesAutocomplete, {
   getLatLng
 } from 'react-places-autocomplete'
 import { withRouter } from 'react-router-dom'
-import { Wrapper, Wrapper2, Wrapper3 } from './styles'
+import { Wrapper, Wrapper2, Wrapper3, Logo } from './styles'
 import Button from '@material-ui/core/Button'
 import { GET_ITINERARIES } from '../Itinerary/graphql'
 import Table from '@material-ui/core/Table'
@@ -14,6 +14,7 @@ import TableHead from '@material-ui/core/TableHead'
 import TableRow from '@material-ui/core/TableRow'
 import { Query } from 'react-apollo'
 import store from 'store'
+import Pic from '../../media/WayGo.png'
 
 class Home extends Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class Home extends Component {
     return (
       <div>
         <Wrapper>
+          <Logo src={Pic} />
           <Wrapper3>
           <PlacesAutocomplete
             value={this.state.address}
