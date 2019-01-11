@@ -18,9 +18,9 @@ const GET_ITINERARIES = gql`
     }
 `
 
-const GET_ITINERARY_BY_DATE = gql`
-    query itinerary($date: String!) {
-        itinerary(date: $date) {
+const GET_ITINERARY_BY_ID = gql`
+    query itineraryById($id: ID!) {
+        itineraryById(id: $id) {
             id
             name
             merchants {
@@ -37,4 +37,4 @@ const GET_ITINERARY_BY_DATE = gql`
 `
 
 
-export { GET_ITINERARIES, GET_ITINERARY_BY_DATE }
+export { GET_ITINERARIES, GET_ITINERARY_BY_ID }

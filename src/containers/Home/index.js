@@ -39,6 +39,11 @@ class Home extends Component {
       })
       .catch(error => console.error('Error', error))
   }
+
+  handleClick = (event, id) => {
+    this.props.history.push({pathname: '/itinerary', state: id})
+  }
+
   render() {
     return (
       <div>
@@ -127,7 +132,11 @@ class Home extends Component {
                 <TableBody>
                   {itineraries.map(i => {
                     return (
-                      <TableRow>
+                      <TableRow
+                        hover
+                        onClick={event => this.handleClick(event, i.id)}
+                        key={i.id}
+                      >
                         <TableCell component="th" scope="row">
                           {i.name}
                         </TableCell>
