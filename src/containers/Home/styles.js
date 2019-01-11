@@ -6,3 +6,13 @@ export const Wrapper = styled(Flex)`
   justify-content: center;
   flex-direction: column;
 `
+
+export const Wrapper2 = styled(Flex)`
+  justify-content: center;
+  margin: 10%;
+`
+
+export const Wrapper3 = styled(Flex)`
+  justify-content: center;
+  margin-top: 30%;
+`

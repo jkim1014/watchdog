@@ -4,7 +4,7 @@ import PlacesAutocomplete, {
   getLatLng
 } from 'react-places-autocomplete'
 import { withRouter } from 'react-router-dom'
-import { Wrapper } from './styles'
+import { Wrapper, Wrapper2, Wrapper3 } from './styles'
 import Button from '@material-ui/core/Button'
 import { GET_ITINERARIES } from '../Itinerary/graphql'
 import Table from '@material-ui/core/Table'
@@ -30,6 +30,7 @@ class Home extends Component {
   }
 
   handleSelect = address => {
+    this.setState({ address })
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
       .then(latLng => {
@@ -42,6 +43,7 @@ class Home extends Component {
     return (
       <div>
         <Wrapper>
+          <Wrapper3>
           <PlacesAutocomplete
             value={this.state.address}
             onChange={this.handleChange}
@@ -68,8 +70,8 @@ class Home extends Component {
                       : 'suggestion-item'
                     // inline style for demonstration purpose
                     const style = suggestion.active
-                      ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                      : { backgroundColor: '#ffffff', cursor: 'pointer' }
+                      ? { backgroundColor: '#fafafa', cursor: 'pointer', borderColor: '#2f3e9e' }
+                      : { backgroundColor: '#ffffff', cursor: 'pointer', borderColor: '#2f3e9e' }
                     return (
                       <div
                         {...getSuggestionItemProps(suggestion, {
@@ -85,17 +87,22 @@ class Home extends Component {
               </div>
             )}
           </PlacesAutocomplete>
-          <Button
-            onClick={() => {
-              store.set('geo', {
-                longitude: this.state.longitude,
-                latitude: this.state.latitude
-              })
-              this.props.history.push('/budget')
-            }}
-          >
-            Explore!
-          </Button>
+          </Wrapper3>
+          <Wrapper2>
+            <Button
+              onClick={() => {
+                store.set('geo', {
+                  longitude: this.state.longitude,
+                  latitude: this.state.latitude
+                })
+                this.props.history.push('/budget')
+              }}
+              variant="contained"
+              color="primary"
+            >
+              Explore!
+            </Button>
+          </Wrapper2>
         </Wrapper>
 
         <Query query={GET_ITINERARIES}>
